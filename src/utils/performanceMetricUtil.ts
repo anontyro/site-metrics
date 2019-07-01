@@ -18,5 +18,5 @@ export const extractDataFromMetrics = (
     const value = getTimeInMs(siteMetrics, name) - navStart;
     data = { ...data, [name]: value.toFixed(3) };
   });
-  return data;
+  return { ...data, navStartTime: navStart };
 };
