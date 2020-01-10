@@ -10,8 +10,6 @@ const getLighthouseAudit = async (
   url: string = DEFAULT_URL
 ) => {
   console.log("started lighthouse audit");
-  const page = await browser.newPage();
-  await page.goto(url, { waitUntil: "load", timeout: 0 });
 
   const { lhr } = await lighthouse(DEFAULT_URL, {
     port: new URL(browser.wsEndpoint()).port,
@@ -20,9 +18,11 @@ const getLighthouseAudit = async (
   });
 
   const htmlReport = ReportGenerator.generateReport(lhr, "html");
+  console.log("Finishing up Lighthouse report");
 
   await writeToFile("lighthouse.html", htmlReport);
   await writeToFile("lighthouse.json", JSON.stringify(lhr));
+  console.log("Lighthouse report successfully wrote to disk");
 };
 
 export default getLighthouseAudit;
