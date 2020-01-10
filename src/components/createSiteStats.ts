@@ -27,7 +27,7 @@ const createSiteStats = async (url: string = DEFAULT_URL) => {
     await page.tracing.stop();
 
     const metrics: Metrics = await client.send("Performance.getMetrics");
-
+    await page.close();
     return extractDataFromMetrics(
       metrics,
       "FirstMeaningfulPaint",
@@ -40,8 +40,8 @@ const createSiteStats = async (url: string = DEFAULT_URL) => {
   });
   try {
     await checkDirExists();
-    const stats = await getPerformanceAudit(url);
     await getLighthouseAudit(browser, url);
+    const stats = await getPerformanceAudit(url);
     console.log(stats);
     await browser.close();
     console.log("audit completed successfully");
