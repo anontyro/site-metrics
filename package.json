@@ -14,7 +14,7 @@
   "dependencies": {
     "@types/puppeteer": "^1.12.4",
     "googleapis": "^39.2.0",
-    "lighthouse": "^5.1.0",
+    "lighthouse": "^9.6.7",
     "puppeteer": "^1.17.0"
   },
   "devDependencies": {
